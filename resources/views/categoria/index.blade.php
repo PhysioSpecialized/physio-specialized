@@ -27,18 +27,25 @@
 
     <!-- TABLE CONTENT -->
     <div class="table-responsive mt-4">
-        <table class="table table-striped table-bordered text-center rounded-2">
+        <table class="table table-striped table-bordered text-center rounded-2" id="tabla">
             <thead class="bg-dark text-white">
                 <tr>
                     <th>#</th>
                     <th>Categoria</th>
                     <th>Color encabezado</th>
                     <th>Imagen</th>
-                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody class="text-center align-middle">
-
+                @foreach ($categorias as $categoria)
+                    <tr>
+                        <td>{{ $categoria->id_categoria }}</td>
+                        <td>{{ $categoria->nombre_categoria }}</td>
+                        <td>{{ $categoria->color_encabezado }}</td>
+                        <td><img src="{{ asset('storage/img/' . $categoria->img_path) }}" class="img-thumnail"
+                                alt="Imagen" style="max-width:100px"></td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

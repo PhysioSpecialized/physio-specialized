@@ -24,6 +24,13 @@
 
     <!-- PERSONAL CSS -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    <!-- DATATABLES -->
+    <!-- Agrega las siguientes líneas en la sección head de tu vista -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
+
 </head>
 
 <body class="sb-nav-fixed">

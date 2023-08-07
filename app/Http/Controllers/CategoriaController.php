@@ -11,7 +11,9 @@ class CategoriaController extends Controller
 {
     public function __invoke()
     {
-        return view('categoria.index');
+        $categorias = Categoria::all();
+
+        return view('categoria.index', compact('categorias'));
     }
 
     public function create(Request $request)
@@ -29,6 +31,22 @@ class CategoriaController extends Controller
         $color_encabezado = $request->input('color_encabezado');
         $img_path = null;
 
+        // Obtener el archivo de la imagen
+        if ($request->hasFile('img_path')) {
+            $archivo_imagen = $request->file('img_path');
+            // Reemplazar espacios por guiones bajos en el nombre de la categoría
+            $nombre_categoria = str_replace(' ', '_', $nombre);
+            // Obtener la extensión del archivo
+            $extension = $archivo_imagen->getClientOriginalExtension();
+
+            // Generar el nombre del archivo usando el nombre de la categoría y la extensión
+            $nombre_archivo = $nombre_categoria . '.' . $extension;
+
+            // Guardar la imagen con el nombre de la categoría
+            $archivo_imagen->storeAs('public/img', $nombre_archivo); // Ajusta la ruta del directorio donde deseas almacenar la imagen
+            $img_path =  $nombre_archivo;
+        }
+
         try {
             // Insertar los datos en la tabla usando el modelo Categoria
             Categoria::create([
@@ -36,22 +54,6 @@ class CategoriaController extends Controller
                 'color_encabezado' => $color_encabezado,
                 'img_path' => $img_path,
             ]);
-
-            // Obtener el archivo de la imagen
-            if ($request->hasFile('img_path')) {
-                $archivo_imagen = $request->file('img_path');
-                // Reemplazar espacios por guiones bajos en el nombre de la categoría
-                $nombre_categoria = str_replace(' ', '_', $nombre);
-                // Obtener la extensión del archivo
-                $extension = $archivo_imagen->getClientOriginalExtension();
-
-                // Generar el nombre del archivo usando el nombre de la categoría y la extensión
-                $nombre_archivo = $nombre_categoria . '.' . $extension;
-
-                // Guardar la imagen con el nombre de la categoría
-                $archivo_imagen->storeAs('uploads/img', $nombre_archivo); // Ajusta la ruta del directorio donde deseas almacenar la imagen
-                $img_path =  'uploads/img/' . $nombre_archivo;
-            }
         } catch (QueryException $e) {
             // Capturar la excepción de clave duplicada
             if ($e->getCode() === '23000') {
