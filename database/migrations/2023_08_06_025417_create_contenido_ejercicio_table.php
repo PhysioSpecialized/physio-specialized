@@ -12,8 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('contenido_ejercicio', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_contenido');
+            $table->string('contenido_path')->nullable();
+            $table->string('tipo_contenido')->nullable();
+            $table->unsignedBigInteger('id_ejercicio');
             $table->timestamps();
+
+            $table->foreign('id_ejercicio')->references('id_ejercicio')->on('ejercicios')->onDelete('cascade')->onUpdate('cascade');
+
         });
     }
 

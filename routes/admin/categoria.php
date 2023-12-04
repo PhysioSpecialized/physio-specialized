@@ -11,4 +11,12 @@ Route::controller(CategoriaController::class)->group(function () {
 
     // POST METHODS
     Route::post('categoria/create', 'create')->name('categoria.create');
+
+
+    // PUT METHODS
+    Route::put('categoria/update/{id}', 'update')->name('categoria.update');
+
+    //DELETE METHOD
+    Route::delete('categoria/delete/{id}', 'delete')->name('categoria.delete');
+
 });

@@ -54,7 +54,7 @@
                     <li>
                         <hr class="dropdown-divider" />
                     </li> -->
-                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Perfil</a></li>
+                    <li><a class="dropdown-item" href="{{ route('perfil.edit') }}">Perfil</a></li>
                     <li><a class="dropdown-item" href="{{ route('logout') }}">Cerrar Sesión</a></li>
                     <!-- Authentication -->
 
@@ -76,17 +76,17 @@
                         <div class="sb-sidenav-menu-heading">Administración</div>
                         <a class="nav-link" href="{{ route('categoria') }}">
                             <div class="sb-nav-link-icon">
-                                <i class="fas fa-globe"></i>
+                                <i class="fas fa-heart"></i>
                             </div>
                             Categorias
                         </a>
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{ route('ejercicio') }}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-running"></i>
                             </div>
                             Ejercicios
                         </a>
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{ route('archivos') }}">
                             <div class="sb-nav-link-icon">
                                 <i class="fas fa-file-pdf"></i>
                             </div>
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
-                    <div class="small">Logged in as:</div>
+                    <div class="small">Logged in as: {{ Auth::user()->name }}</div>
                 </div>
             </nav>
         </div>
@@ -130,9 +130,54 @@
     <!-- SweatAlert V2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>
 
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
     <!-- INDEX JS -->
     <script src="{{ asset('js/index.js') }}"></script>
+    
+
+    <script>
+        const AlertMessage = (mensaje, tipo) => {
+            const tiposConfig = {
+                'success': { title: 'Éxito', icon: 'success' },
+                'error': { title: 'Error', icon: 'error' },
+                'info': { title: 'Información', icon: 'info' }
+            };
+    
+            const config = tiposConfig[tipo] || { title: tipo === 'success' ? 'Éxito' : 'Error', icon: tipo };
+    
+            Swal.fire({
+                title: config.title,
+                text: mensaje,
+                icon: config.icon,
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            });
+        }
+    
+        @if (session('success'))
+            AlertMessage('{{ session('success') }}', 'success');
+        @endif
+    
+        @if (session('error'))
+            AlertMessage('{{ session('error') }}', 'error');
+            console.log('{{ session('error') }}');
+        @endif
+    
+        @if (session('info'))
+            AlertMessage('{{ session('info') }}', 'info');
+            console.log('{{ session('info') }}');
+        @endif
+    </script>
+    
+
     @yield('afterScripts')
+
+    
 </body>
 
 </html>
