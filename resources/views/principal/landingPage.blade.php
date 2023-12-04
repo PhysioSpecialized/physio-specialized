@@ -67,7 +67,7 @@
                     <div class="container mt-3 mb-5">
                         <div class="row row-cols-2">
                             @forelse ($categorias as $categoria)
-                                <div class="col mb-3">
+                                <div class="col mb-4">
                                     <div class="card p-0">
                                         <div class="card-header fs-3 fw-bold text-white text-center" style="background-color: {{ $categoria->color_encabezado }}">
                                             {{ $categoria->nombre_categoria }}
@@ -136,8 +136,8 @@
                 <hr class="text-secondary mb-5">
 
                 <div class="row">
-                    <div class="col-md-6">                       
-                        <iframe src="https://maps.app.goo.gl/SkXmMvqgzRGU3LGX9" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <div class="col-md-6">  
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30972.612385811!2d-89.58342103036325!3d13.983792431673358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f62e8a88f74c611%3A0x334dedcda18267cd!2sSanta%20Ana!5e0!3m2!1sen!2ssv!4v1701665991352!5m2!1sen!2ssv" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                     
                     </div>
                     <div class="col-md-6">
                         <ul class="list-unstyled">

@@ -9,7 +9,7 @@
         <div class="col-md-4">
 
             <div class="card text-white mb-3" style="background-color: cornflowerblue">
-                <div class="card-header">Categorías</div>
+                <div class="card-header"><i class="fas fa-heart me-1"></i> Categorías</div>
                 <div class="card-body">
                   <h2 class="card-title text-center">{{ $categorias->count() }}</h2>
                 </div>
@@ -20,7 +20,7 @@
         <div class="col-md-4">
            
             <div class="card text-white mb-3" style="background-color: #199094">
-                <div class="card-header">Ejercicios</div>
+                <div class="card-header"><i class="fas fa-running me-1"></i>Ejercicios</div>
                 <div class="card-body">
                   <h2 class="card-title text-center">{{ $ejercicios->count() }}</h2>
                 </div>
@@ -30,7 +30,7 @@
 
         <div class="col-md-4">
             <div class="card text-white mb-3" style="background-color: palevioletred">
-                <div class="card-header">Archivos</div>
+                <div class="card-header"><i class="fas fa-file me-1"></i>Archivos</div>
                 <div class="card-body">
                   <h2 class="card-title text-center">{{ $archivos->count() }}</h2>
                 </div>
