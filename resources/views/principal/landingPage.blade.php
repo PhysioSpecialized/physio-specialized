@@ -122,7 +122,7 @@
                 <div class="col-md-6">
                     <h2 class="section__title">CONTACTO</h2>
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30972.612385811!2d-89.58342103036325!3d13.983792431673358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f62e8a88f74c611%3A0x334dedcda18267cd!2sSanta%20Ana!5e0!3m2!1sen!2ssv!4v1701665991352!5m2!1sen!2ssv"
+                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d815.2540800166212!2d-89.7082249388522!3d13.975991675482803!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6295d6e3135891%3A0x5ac43df933c49844!2sPhysio%20Specialized%20Clinic!5e1!3m2!1sen!2ssv!4v1701831418348!5m2!1sen!2ssv"
                         width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
@@ -131,8 +131,9 @@
                         <div class="contact-info ">
                             <ul>
                                 <li>
-                                    <a href="#">
-                                        <i class="fa-solid fa-location-pin"></i> Santa Ana, El Salvador
+                                    <a href="https://maps.app.goo.gl/h2FdrvFhHGyzdq1j6">
+                                        <i class="fa-solid fa-location-pin"></i>
+                                        El Refugio, El Salvador
                                     </a>
                                 </li>
                                 <li>
