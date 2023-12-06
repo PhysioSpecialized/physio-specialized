@@ -23,14 +23,12 @@ Route::get('/acceder', function () {
     return view('login');
 })->name('acceder');
 
-Route::get('/ejercicios/ver/{id}', [EjercicioController::class, 'verEjercicios'] )->name('ejercicios');
+Route::get('/ejercicios/ver/{id}', [EjercicioController::class, 'verEjercicios'])->name('ejercicios');
 
 
 Route::get('/dashboard', [PrincipalController::class, 'dashboard'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
-
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/perfil', [PerfilController::class, 'edit'])->name('perfil.edit');

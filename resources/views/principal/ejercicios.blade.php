@@ -23,6 +23,20 @@
 
     <!-- PERSONAL STYLES -->
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+
+    <style>
+        #home {
+            background: linear-gradient(rgba(0, 0, 0, 0.343), rgba(0, 0, 0, 0.408)),
+                url("{{ asset('storage/img/' . $categoria->img_path) }}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh !important;
+        }
+    </style>
 </head>
 
 
@@ -32,76 +46,72 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-dark navbar-blue fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="{{route('principal')}}">
+            <a class="navbar-brand" href="{{ route('principal') }}">
                 Physio <span>Specialized</span>
             </a>
         </div>
     </nav>
     <!-- Navbar end -->
 
-    <div class="mt-5 d-flex justify-content-center align-items-center">
-        <div class="position-relative text-left">
-            <img src="{{ asset('storage/img/' . $categoria->img_path) }}" class="img-fluid mb-5" alt="..."
-                 style="width: 100vw; max-height: 80vh; object-fit: cover;" />
-    
-            <div class="image-text mb-2 position-absolute top-50 start-50 translate-middle text-center">
-                <h1 class="text-white text-uppercase" style="font-size: 6rem;">
-                    {{ $categoria->nombre_categoria }}
-                </h1>
-            </div>
+    <section class="section home__section" id="home">
+        <div class="container text-center">
+            <h3 class="home__title">
+                {{ $categoria->nombre_categoria }}
+            </h3>
         </div>
-    </div>
-             
-
+    </section>
 
     <section id="categorias" class="mt-2 mb-5">
         <div class="container px-4">
             <div class="row gx-4 justify-content-center">
                 <div class="col-lg-8">
-                    <h2 class="fs-1" style="color: #193c94">EJERCICIOS</h2>                    
+                    <h2 class="fs-1" style="color: #193c94">EJERCICIOS</h2>
                     <div class="row row-cols-1 row-cols-md-2 mt-5">
                         @forelse ($ejercicios as $ejercicio)
                             <div class="col mb-5">
                                 <div class="card">
-                                    <div class="card-header text-white text-uppercase text-center fs-3" style="background-color: #193c94">
+                                    <div class="card-header text-white text-uppercase text-center fs-3"
+                                        style="background-color: #193c94">
                                         {{ $ejercicio->nombre }}
-                                      </div>
+                                    </div>
                                     <div class="card-body">
                                         <p class="card-text">{{ $ejercicio->descripcion }}</p>
 
                                         @foreach ($ejercicio->archivos as $contenido)
-                                        <a href="{{ url('storage/' . $contenido->contenido_path) }}" class="fs-6 text-decoration-none mt-5 mb-0" style="color: #2b62cb;" download>Descargar ({{ $contenido->tipo_contenido }})</a>
-                                        @endforeach                                    
+                                            <a href="{{ url('storage/' . $contenido->contenido_path) }}"
+                                                class="fs-6 text-decoration-none mt-5 mb-0" style="color: #2b62cb;"
+                                                download>Descargar ({{ $contenido->tipo_contenido }})</a>
+                                        @endforeach
                                     </div>
-                                   
+
                                 </div>
                             </div>
                         @empty
                             <p>No hay ejercicios disponibles para esta categoría.</p>
                         @endforelse
                     </div>
- 
+
                 </div>
-                
-             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a class="btn btn-secondary" href="{{ route('principal') }}">Regresar</a>
-            </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a class="btn btn-secondary" href="{{ route('principal') }}">Regresar</a>
+                </div>
 
 
             </div>
         </div>
     </section>
 
-    
+
 
     <!-- FIN CONTENIDO -->
-    
+
 
     <!-- Scripts -->
     <footer class="py-3" style="background-color: #193c94">
         <div class="container px-4">
             <p class="m-0 text-center text-white fs-5">Copyright &copy; Physio - Specialized</p>
-           
+
         </div>
     </footer>
     <!-- Bootstrap V5.2 JS -->

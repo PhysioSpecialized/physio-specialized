@@ -104,7 +104,7 @@
                 <div class="container-fluid px-4">
                     <div class="card">
                         <div class="card-header fw-bold">
-                            @yield('card-title')
+                            @yield('title')
                         </div>
                         <div class="card-body">
                             @yield('content')
@@ -132,18 +132,30 @@
 
     <!-- INDEX JS -->
     <script src="{{ asset('js/index.js') }}"></script>
-    
+
 
     <script>
         const AlertMessage = (mensaje, tipo) => {
             const tiposConfig = {
-                'success': { title: 'Éxito', icon: 'success' },
-                'error': { title: 'Error', icon: 'error' },
-                'info': { title: 'Información', icon: 'info' }
+                'success': {
+                    title: 'Éxito',
+                    icon: 'success'
+                },
+                'error': {
+                    title: 'Error',
+                    icon: 'error'
+                },
+                'info': {
+                    title: 'Información',
+                    icon: 'info'
+                }
             };
-    
-            const config = tiposConfig[tipo] || { title: tipo === 'success' ? 'Éxito' : 'Error', icon: tipo };
-    
+
+            const config = tiposConfig[tipo] || {
+                title: tipo === 'success' ? 'Éxito' : 'Error',
+                icon: tipo
+            };
+
             Swal.fire({
                 title: config.title,
                 text: mensaje,
@@ -154,26 +166,26 @@
                 timer: 3000
             });
         }
-    
+
         @if (session('success'))
             AlertMessage('{{ session('success') }}', 'success');
         @endif
-    
+
         @if (session('error'))
             AlertMessage('{{ session('error') }}', 'error');
             console.log('{{ session('error') }}');
         @endif
-    
+
         @if (session('info'))
             AlertMessage('{{ session('info') }}', 'info');
             console.log('{{ session('info') }}');
         @endif
     </script>
-    
+
 
     @yield('afterScripts')
 
-    
+
 </body>
 
 </html>
