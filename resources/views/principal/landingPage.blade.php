@@ -48,9 +48,9 @@
             <div class="row justify-content-md-center text-center">
                 <div class="col-lg-6 ">
                     <h3 class="home__title">
-                        MENS SANA
-                        <span>IN CORPORE</span>
-                        SANO
+                        UN ESPACIO
+                        <span>ESPECIALIZADO</span>
+                        EN FISIOTERAPIA
                     </h3>
                 </div>
             </div>
