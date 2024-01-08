@@ -94,18 +94,14 @@
             <div class="row about_content">
                 <div class="col-lg-5">
                     <p>
-                        Physio Specialized ofrece servicios de Terapia física y Ocupacional personalizado para cada
-                        diagnóstico.
+                        PhysioSpeciaLand es un sitio web de fisioterapia diseñado
+                        para ofrecer un amplio arsenal de material de auto tratamiento
+                        fisioterapéutico (guías de ejercicio terapéutico PDF, videos
+                        sobre técnicas específicas, infografía etc.) para pacientes que
+                        están cursando un proceso de recuperación física o quieren
+                        prevenir/reducir el riesgo de lesiones o enfermedades que
+                        afecten la calidad de vida. 
                     </p>
-                    <p>
-                        Como clínica de rehabilitación nos capacitamos y actualizamos constante para ofrecerte las
-                        mejores opciones para tu rehabilitación.
-                    </p>
-                    <p>
-                        Nuestra meta escencial llevar tu recuperación al siguiente nivel para que vuelvas a tu
-                        actividades de la vida laboral, deportiva o escolar con calidad.
-                    </p>
-
                 </div>
                 <div class="col-lg-7">
                     <img src="{{ asset('img/logo.png') }}" alt="Logo" class="img-fluid">
