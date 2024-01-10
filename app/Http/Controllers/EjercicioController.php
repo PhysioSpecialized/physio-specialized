@@ -48,11 +48,10 @@ class EjercicioController extends Controller
                 'nombre' => $nombre,
                 'descripcion' => $descripcion,
                 'id_categoria' => $id_categoria,
-                
+
             ]);
         } catch (QueryException $e) {
             return redirect()->route('ejercicio')->with('error', 'Error en el servidor');
-
         }
 
         return redirect()->route('ejercicio')->with('success', 'Ejercicio agregado con éxito.');
@@ -61,36 +60,35 @@ class EjercicioController extends Controller
 
     public function update(Request $request, $id)
     {
-    $request->validate([
-        'id_categoria' => 'required',
-        'nombre' => 'required|string|max:255',
-        'descripcion' => 'required|string',
-    ]);
-
-    $id_categoria = $request->input('id_categoria');
-    $nombre = $request->input('nombre');
-    $descripcion = $request->input('descripcion');
-
-    try {
-        $ejercicio = Ejercicio::findOrFail($id);
-
-        $existingExercise = Ejercicio::where('nombre', $nombre)->where('id_ejercicio', '!=', $id)->first();
-
-        if ($existingExercise) {
-            return redirect()->route('ejercicio')->with('error', 'El nombre del ejercicio ya existe.');
-        }
-
-        $ejercicio->update([
-            'nombre' => $nombre,
-            'descripcion' => $descripcion,
-            'id_categoria' => $id_categoria,
+        $request->validate([
+            'id_categoria' => 'required',
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'required|string',
         ]);
 
-    } catch (\Exception $e) {
-        return redirect()->route('ejercicio')->with('error', 'Error en el servidor');
-    }
+        $id_categoria = $request->input('id_categoria');
+        $nombre = $request->input('nombre');
+        $descripcion = $request->input('descripcion');
 
-    return redirect()->route('ejercicio')->with('success', 'Ejercicio actualizado con éxito.');
+        try {
+            $ejercicio = Ejercicio::findOrFail($id);
+
+            $existingExercise = Ejercicio::where('nombre', $nombre)->where('id_ejercicio', '!=', $id)->first();
+
+            if ($existingExercise) {
+                return redirect()->route('ejercicio')->with('error', 'El nombre del ejercicio ya existe.');
+            }
+
+            $ejercicio->update([
+                'nombre' => $nombre,
+                'descripcion' => $descripcion,
+                'id_categoria' => $id_categoria,
+            ]);
+        } catch (\Exception $e) {
+            return redirect()->route('ejercicio')->with('error', 'Error en el servidor');
+        }
+
+        return redirect()->route('ejercicio')->with('success', 'Ejercicio actualizado con éxito.');
     }
 
 
@@ -103,41 +101,34 @@ class EjercicioController extends Controller
             $ejercicio->delete();
 
             return response()->json(['success' => true, 'message' => 'Ejercicio eliminado con éxito.']);
-
-
         } catch (\Exception $e) {
 
             return response()->json(['success' => false, 'message' => 'Error en el servidor']);
-
         }
     }
 
 
 
 
-    
+
     public function verEjercicios(string $id)
     {
-        
+
 
         try {
 
-        $categoria = Categoria::find($id);
+            $categoria = Categoria::find($id);
 
-        if (!$categoria) {
-            return redirect()->back()->with('error', 'Ha ocurrido un error. No se pudo realizar la operación.');
+            if (!$categoria) {
+                return redirect()->back()->with('error', 'Ha ocurrido un error. No se pudo realizar la operación.');
+            }
+
+
+            $ejercicios = Ejercicio::where('id_categoria', $id)->get();
+            return view('principal.ejercicios', compact('categoria', 'ejercicios'));
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->route('/')->with('error', 'Error al cargar la página');
         }
-
-        
-        $ejercicios = Ejercicio::where('id_categoria', $id)->get();
-        return view('principal.ejercicios', compact('categoria', 'ejercicios'));
-    } catch (\Exception $e) {
-        Log::error($e->getMessage());
-        return redirect()->route('/')->with('error', 'Error al cargar la página');
     }
-    }
-
-
-    
-    
 }

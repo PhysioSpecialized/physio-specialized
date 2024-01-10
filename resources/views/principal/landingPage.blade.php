@@ -34,6 +34,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="#categorias">Categorias</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('covid') }}">Covid-19</a></li>
                     <li class="nav-item"><a class="nav-link" href="#acercaDe">Acerca de</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
 
@@ -100,7 +101,7 @@
                         sobre técnicas específicas, infografía etc.) para pacientes que
                         están cursando un proceso de recuperación física o quieren
                         prevenir/reducir el riesgo de lesiones o enfermedades que
-                        afecten la calidad de vida. 
+                        afecten la calidad de vida.
                     </p>
                 </div>
                 <div class="col-lg-7">

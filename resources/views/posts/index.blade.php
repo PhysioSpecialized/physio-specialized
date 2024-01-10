@@ -16,6 +16,7 @@
                 <tr>
                     <th>#</th>
                     <th>Titulo</th>
+                    <th>Descripcion</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -24,6 +25,7 @@
                     <tr>
                         <td>{{ $publicacion->id }}</td>
                         <td>{{ $publicacion->titulo }}</td>
+                        <td>{{ $publicacion->descripcion }}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <button class="btn btn-warning" data-bs-toggle="modal"
@@ -65,6 +67,12 @@
                                     <input type="text" name="titulo" id="titulo" class="form-control">
                                 </fieldset>
                             </div>
+                            <div class="col-md-12 mt-2 mb-2">
+                                <fieldset>
+                                    <label for="descripcion">Descripción:</label>
+                                    <textarea name="descripcion" id="descripcion" class="form-control" rows="5"></textarea>
+                                </fieldset>
+                            </div>
                             <!-- descripcion  -->
                             <div class="col-md-12 mt-2 mb-2">
                                 <fieldset>
@@ -100,7 +108,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('ejercicio.update', $publicacion->id) }}" method="post">
+                            <form action="{{ route('posts.update', $publicacion->id) }}" method="post">
                                 @csrf
                                 @method('PUT')
 
@@ -115,9 +123,18 @@
                                         </fieldset>
                                         <fieldset>
                                             <label for="tituloEdit">Titulo:</label>
-                                            <input type="text" name="tituloEdit" id="tituloEdit" class="form-control">
+                                            <input type="text" name="tituloEdit" id="tituloEdit" class="form-control"
+                                                value="{{ $publicacion->titulo }}">
                                         </fieldset>
                                     </div>
+
+                                    <div class="col-md-12 mt-2 mb-2">
+                                        <fieldset>
+                                            <label for="descripcion">Descripción:</label>
+                                            <textarea name="descripcion" id="descripcion" class="form-control" rows="5">{{ $publicacion->descripcion }}</textarea>
+                                        </fieldset>
+                                    </div>
+
                                     <!-- descripcion  -->
                                     <div class="col-md-12 mt-2 mb-2">
                                         <fieldset>
@@ -161,7 +178,7 @@
                 if (result.isConfirmed) {
 
                     $.ajax({
-                        url: '/ejercicio/delete/' + id,
+                        url: '/posts/delete/' + id,
                         type: 'DELETE',
                         data: {
                             "_token": "{{ csrf_token() }}",
