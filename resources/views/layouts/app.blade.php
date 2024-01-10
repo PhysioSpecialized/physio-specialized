@@ -31,6 +31,11 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.0/js/jquery.dataTables.min.js"></script>
 
+    <!-- Summernote CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.css"
+        integrity="sha512-ngQ4IGzHQ3s/Hh8kMyG4FC74wzitukRMIcTOoKT3EyzFZCILOPF0twiXOQn75eDINUfKBYmzYn2AA8DkAk8veQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body class="sb-nav-fixed">
@@ -91,6 +96,12 @@
                                 <i class="fas fa-file-pdf"></i>
                             </div>
                             Archivos de ejercicios
+                        </a>
+                        <a class="nav-link" href="{{ route('posts.covid') }}">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa-solid fa-virus"></i>
+                            </div>
+                            Covid-19
                         </a>
                     </div>
                 </div>
@@ -182,6 +193,26 @@
         @endif
     </script>
 
+    <!-- Summernote JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs4.min.js"
+        integrity="sha512-ZESy0bnJYbtgTNGlAD+C2hIZCt4jKGF41T5jZnIXy4oP8CQqcrBGWyxNP16z70z/5Xy6TS/nUZ026WmvOcjNIQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        const InitSummerNote = (idElemento) => {
+            $(document).ready(function() {
+                $('#' + idElemento).summernote({
+                    height: 300,
+                    lang: 'es-ES', // Especifica el idioma español
+                    toolbar: [
+                        ['style', ['bold', 'italic', 'underline', 'clear']],
+                        ['insert', ['picture', 'link']],
+                    ],
+                    disableResizeEditor: true,
+                });
+            });
+        }
+    </script>
 
     @yield('afterScripts')
 

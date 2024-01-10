@@ -39,3 +39,4 @@ require __DIR__ . '/auth.php';
 require __DIR__ . '/admin/categoria.php';
 require __DIR__ . '/admin/ejercicio.php';
 require __DIR__ . '/admin/contenido.php';
+require __DIR__ . '/admin/posts.php';
