@@ -50,7 +50,7 @@ class PostsController extends Controller
     {
         try {
 
-            $publicacion = Post::find($id);
+            $publicacion = Post::with('pdfs')->find($id);
 
             if (!$publicacion) {
                 return redirect()->back()->with('error', 'Ha ocurrido un error. No se pudo realizar la operación.');

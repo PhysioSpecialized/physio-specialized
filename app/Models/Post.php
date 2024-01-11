@@ -9,4 +9,9 @@ class Post extends Model
 {
     use HasFactory;
     protected $fillable = ['titulo', 'contenido', 'categoria', 'descripcion'];
+
+    public function pdfs()
+    {
+        return $this->hasMany(Pdf::class);
+    }
 }

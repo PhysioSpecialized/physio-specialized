@@ -2,7 +2,7 @@
 @section('title', 'Publicaciones sobre covid-19')
 @section('card-title', 'Covid-19')
 @section('content')
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- MODAL BUTTON -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addExcerciseModal">
         <i class="fas fa-plus"></i>
@@ -28,11 +28,22 @@
                         <td>{{ $publicacion->descripcion }}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <button class="btn btn-warning" data-bs-toggle="modal"
-                                    data-bs-target="#editarModal{{ $publicacion->id }}">
+
+                                <!-- Files button -->
+                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#archivos-{{ $publicacion->id }}"
+                                    onclick="showFilesModal({{ $publicacion->id }})">
+                                    <i class="fas fa-file-upload me-1"></i> Archivos
+                                </button>
+
+                                <!-- Files button end -->
+                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#editarModal{{ $publicacion->id }}"
+                                    onclick="loadData({{ $publicacion->id }})">
                                     <i class="fas fa-pencil-alt me-1"></i> Editar
                                 </button>
-                                <button class="btn btn-danger" onclick="eliminarPublicacion({{ $publicacion->id }})">
+                                <button class="btn btn-danger  btn-sm"
+                                    onclick="eliminarPublicacion({{ $publicacion->id }})">
                                     <i class="fas fa-trash me-1"></i> Eliminar
                                 </button>
                             </div>
@@ -139,7 +150,7 @@
                                     <div class="col-md-12 mt-2 mb-2">
                                         <fieldset>
                                             <label for="contenidoEdit">Contenido:</label>
-                                            <textarea name="contenidoEdit" id="contenidoEdit" class="form-control" rows="9">{{ $publicacion->contenido }}</textarea>
+                                            <textarea name="contenidoEdit" id="contenidoEdit{{ $publicacion->id }}" class="form-control" rows="9">{!! $publicacion->contenido !!}</textarea>
                                         </fieldset>
                                     </div>
                                     <div class="col-md-12">
@@ -158,12 +169,67 @@
         @endforeach
     @endif
 
+    <!-- Archivos -->
+    @if (!empty($publicaciones))
+        @foreach ($publicaciones as $publicacion)
+            <div class="modal fade" id="archivos-{{ $publicacion->id }}" tabindex="-1"
+                aria-labelledby="archivos-{{ $publicacion->id }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="archivos-{{ $publicacion->id }}">Agregar archivos
+                            </h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <button class="btn btn-success" onclick="subirArchivo({{ $publicacion->id }})">Agregar
+                                    archivo</button>
+
+                                <div class="table-responsive mt-3">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Nombre archivo
+                                                </th>
+                                                <th>
+                                                    Archivo
+                                                </th>
+                                                <th>
+                                                    Acción
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="table-publicacion{{ $publicacion->id }}">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                data-bs-dismiss="modal">{{ 'Cerrar' }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    @endif
+
 @endsection
 
 @section('afterScripts')
     <script>
         InitSummerNote('contenido');
-        InitSummerNote('contenidoEdit');
+
+
+        const loadData = (id) => {
+            InitSummerNote('contenidoEdit' + id);
+        }
+
 
         function eliminarPublicacion(id) {
             Swal.fire({
@@ -212,4 +278,6 @@
             });
         }
     </script>
+
+    <script src="{{ asset('js/posts.js') }}"></script>
 @endsection

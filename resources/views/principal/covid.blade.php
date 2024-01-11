@@ -50,7 +50,7 @@
                     <div class="card__title text-start" style="background-color: #193c94;">
                         {{ ucfirst($publicacion->titulo) }}
                     </div>
-                    <div class="card__body p-2 fw-light">
+                    <div class="card__body p-2 fw-light" style="height: 136px !important">
                         {{ Str::limit($publicacion->descripcion, 200, ' ...') }}
                     </div>
                     <div class="card__footer text-end">
