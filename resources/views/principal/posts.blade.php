@@ -56,8 +56,27 @@
                     </p>
                 </div>
 
-                <div class="col-md-12">
+                <div class="col-md-9">
                     {!! $publicacion->contenido !!}
+                </div>
+                <div class="col-md-3 text-center p-2" style="background: #efefef; border-radius: 5px">
+                    <h2 style="color: #2a50af;" class="fw-light">Material educativo</h2>
+                    <hr>
+                    @if ($publicacion->pdfs->isEmpty())
+                        <p>No hay archivos PDF asociados a esta publicación.</p>
+                    @else
+                        <ul>
+                            @foreach ($publicacion->pdfs as $pdf)
+                                <li style="list-style: none" class="text-start">
+                                    <a href="{{ asset('storage/pdfs/' . $pdf->nombre_archivo) }}" target="_blank"
+                                        class="text-danger fs-2" style="text-decoration: none">
+                                        <i class="fas fa-file-pdf"></i>
+                                        <span class="text-muted fs-5">Descargar</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
 
                 <div class="col-md-12">

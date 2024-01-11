@@ -6,9 +6,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(PostsController::class)->group(function () {
     // GET METHODS
-    Route::get('posts/covid', 'postsCovid')->middleware('auth')->name('posts.covid');
-    Route::get('covid', 'PrincipalCovid')->middleware('auth')->name('covid');
-    Route::get('posts/{id}', 'verPosts')->middleware('auth')->name('posts.ver');
+    Route::get('posts/covid', 'postsCovid')->name('posts.covid');
+    Route::get('covid', 'PrincipalCovid')->name('covid');
+    Route::get('posts/{id}', 'verPosts')->name('posts.ver');
 
     // POST METHOS
     Route::post('posts/create', 'Create')->middleware('auth')->name('posts.create');

@@ -25,6 +25,8 @@
     <!-- PERSONAL CSS -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- DATATABLES -->
     <!-- Agrega las siguientes líneas en la sección head de tu vista -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.0/css/jquery.dataTables.min.css">
